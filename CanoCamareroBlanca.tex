@@ -1,0 +1,280 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath} 
+\usepackage{amssymb} % utlizar mathbb
+
+
+\newenvironment{micaja}
+{
+    \begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }   
+    {   
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+
+
+
+\title{Prueba de variable compleja}
+\author{Blanca Cano Camarero}
+
+\begin{document}
+\begin{titlepage}
+\maketitle
+\tableofcontents
+\end{titlepage}
+
+\section{Ejercicio 1}
+
+\begin{micaja}
+    Estudiar la convergencia puntual, absoluta y uniforme de la serie $\sum_{n \geq 0} f_n$ donde
+    $$f_n(z) = \left( \frac{z^2 - i}{z^2+i} \right)^n \forall z \in \mathbb C \setminus  \left\{ \pm  \frac{-1-i}{\sqrt{2}} \right\}$$
+\end{micaja}
+
+
+Llamando $\phi(z) = \frac{z^2 - i}{z^2+i}$ tenemos que nuestra serie a estudiar 
+ es $\sum_{n \geq 0} \phi(z)^n$, una serie geométrica. \par
+ Sabemos que toda serie geométrica $\sum_{n \geq 0} w^n$: 
+
+ \begin{itemize}
+     \item Será absolutamente convergente para $w \in D(0,1).$
+     \item Uniformemente convergente para $w \in k$ con k un compacto de $D(0,1).$
+ \end{itemize}
+Por lo tanto nos interesa estudiar el conjunto de puntos $\Omega$ para el que está definida la
+serie y que cumpla que  $\forall z \in \Omega \subseteq \mathbb C \setminus  \left\{ \pm  \frac{-1-i}{\sqrt{2}} \right\}$ 
+se tenga que  $|\phi(z)|<1$. \paragraph{}
+ Deducción  analítica de $\Omega$.
+
+Denotaremos todo número complejo z como $z = x+yi$ con $x,y \in \mathbb R.$
+
+$$z^2-i = (x^2 - y^2) + (2xy -1)i$$
+$$z^2+i = (x^2 - y^2)+(2xy + 1)i$$
+
+Y sus respectivos módulos son: 
+
+$$|z^2-i| = \sqrt{ (x^2 - y^2)^2 + (2xy -1)^2}$$
+$$|z^2+i| = \sqrt{ (x^2 - y^2)^2 + (2xy +1)^2}$$
+
+Por tanto 
+
+$$\left| \frac{z^2-i}{z^2+i} \right| <1 \Longleftrightarrow \frac{|z^2-i|}{|z^2+i|}<1 \Longleftrightarrow \sqrt{ (x^2 - y^2)^2 + (2xy -1)^2} < \sqrt{ (x^2 - y^2)^2 + (2xy +1)^2}$$
+$$\Longleftrightarrow(2xy-1)^2 <(2xy+1)^2 \Longleftrightarrow 0 < xy$$
+Por tanto concluimos que esto válido para puntos del primer y tercer cuadrante en que esté definida la función, 
+es decir 
+$$\Omega = \{ x+yi  :   x,y \in \mathbb R^+ \vee x,y \in \mathbb R^-\} \setminus  \left\{ \pm  \frac{-1-i}{\sqrt{2}} \right\}.$$
+
+\begin{itemize}
+\item \textbf{Convergencia absoluta}:  
+La serie converge absolutamente en $\Omega.$ 
+\item \textbf{Convergencia uniforme}:
+ La serie será uniformemente convergente en cualquier compacto de $\Omega.$
+\item \textbf{Convergencia puntual}: Convergencia absoluta implica puntual, por tanto converge puntualmente en $\Omega.$ 
+\item Para puntos fuera de $\Omega$ la serie diverge. 
+\end{itemize}
+
+\newpage
+\section{Ejercicio 2}  
+\begin{micaja}
+
+    Estudiar la derivabilidad  de las funciones $f,g: \mathbb C \rightarrow \mathbb C$
+\end{micaja}
+
+\subsection{$f(z)=z^2 e^{\bar z}$}
+
+$z^2$ es un polinomio que es derivable en todo $\mathbb C$ y solo se anula en $0.$ 
+
+Si despejamos la exponencial llegamos a la siguiente ecuación:
+$$\frac{f(z)}{z^2} = e^{\bar z}.$$
+La cual nos va ayudar a conocer los puntos en los que $f$ NO es derivable,
+pues por la regla de derivación de la división tenemos que si $f \in \mathcal H(\Omega)$ con $\Omega \subseteq \mathbb C$ entonces 
+$$\frac{f(z)}{z^2} =  e^{\bar z} \in \mathcal H(\Omega \cap \mathbb C^*)$$ 
+(Nótese que se ha excluido z=0).   \paragraph{}
+
+Estudiemos la derivabilidad de $e^{\bar z}$. \paragraph{}
+
+Para simplificar la notación denotaré a $x = Re z$, $y = Im z$ Con $z \in \Omega \cap \mathbb C^*$
+$$e^{\bar z} = e^x (cos(-y) + i sin(-y)) = e^x cos(y) - i e^x sin(y)$$
+$$\frac{\partial}{\partial x} Re e^{\bar z} = e^x cos(y)$$
+$$\frac{\partial}{\partial y} Re e^{\bar z} = - e^x sin(y)$$
+$$\frac{\partial}{\partial x} Im e^{\bar z} = - e^x sin(y)$$
+$$\frac{\partial}{\partial y} Im e^{\bar z} = - e^x cos(y)$$
+
+Lo puntos derivables tienen que cumplir las ecuaciones de Cauchy-Rieman:
+$$\frac{\partial}{\partial x} Re e^{\bar z} = \frac{\partial}{\partial y} Im e^{\bar z} 
+\wedge
+\frac{\partial}{\partial y} Re e^{\bar z} = - \frac{\partial}{\partial x} Im e^{\bar z}.$$
+
+Esto es un sistema incompatible, por tanto $e^{\bar z} \notin \mathcal H( \mathbb C^* \cap \Omega)$ 
+lo que implica que $f(z) \notin \mathcal H(\Omega)$ con $\Omega$ cualquier conjunto contenido en $\mathbb C^*.$
+
+Estudiamos el caso que nos faltaba por estudiar su derivabilidad $z=0$
+
+$$f'(0) = lim_{z \rightarrow 0} \frac{f(z)-f(0)}{z-0} = lim_{z \rightarrow 0} \frac{z^2 e^{\bar z}}{z} = 0$$
+
+Con lo que concluimos que $f$ es derivable en el 0.
+
+
+\subsection{$g(z) = sin(z) f(z)$}
+Razonaremos de la misma manera: \\
+Despejamos $ \frac{g(z)}{sin(z)} = f(z)$
+Los puntos que tendremos que estudiar de manera particular 
+serán: 
+\begin{itemize}
+\item Para los que $sin(z) = 0$, estos son los de la forma $z = \pi k$ con $k$ entero.
+\item El $z=0$ ya que aquí $f(z)$ es derivable. \paragraph{}
+\end{itemize}
+Llamaré $\Lambda = \pi\mathbb Z \cup \{0\}$ al conjunto de estos puntos. \paragraph{}
+
+Puesto que $f(z)$ no es derivable en $\mathbb C \setminus \Lambda$
+tampoco $g(z)$ lo será ahí. 
+
+Analizaremos ahora la derivabilidad en $\Lambda$ por la definición de derivada. 
+
+$\forall a \in \pi\mathbb Z$ se tiene 
+$$lim_{z \longrightarrow a} \frac{g(z)-g(a)}{z-a} = f(a) lim_{z \longrightarrow a} \frac{sin(z)}{z-a}$$
+Si escribios $sin(z)$ como el polinomio de taylor centrado en a tenemos: 
+
+$$f(a) lim_{z \longrightarrow a} \frac{sin(z)}{z-a} = f(a) lim_{z \longrightarrow a}
+\frac{1}{z-a} (sin(a) + cos(a)(z-a) + \frac{- sin(a)}{2!}(z-a)^2 +\dots )$$
+ $$=f(a) lim_{z \longrightarrow a}
+  (\frac{sin(a)}{z-a} + cos(a)(z-a)^0 + \frac{- sin(a)}{2!}(z-a)^{2-1} + \dots )$$
+  $$=f(a) lim_{z \longrightarrow a}
+  (0+ cos(a) + \frac{- sin(a)}{2!}(z-a)\dot )= f(a)cos(a)$$
+
+Que tine límite y por tanto existe la derivada en esos puntos. 
+
+Veamos ahora el caso $z=0$. 
+
+$$lim_{z \longrightarrow a} \frac{g(z)-g(0)}{z-0} = lim_{z \longrightarrow a} \frac{sin(z)}{z}$$
+Que si volvemos a escribir $sin(z)$ como el polinomio de taylor centradon en 0 tenemos:
+
+$$lim_{z \longrightarrow 0} \frac{g(z)-g(0)}{z-0} = cos(0).$$ 
+
+Concluimos por tanto que $g \in \mathcal H(\Lambda).$
+
+
+
+
+
+\newpage
+\section{Ejercicio 3}  
+\begin{micaja}
+    Calcular $$\int_{C(0,1)} \frac{cos(z)}{z(z-2)^2}dz$$
+\end{micaja}
+
+Sea $\Omega = D(0,r)$ con $1<r<2$ un abierto. Se tiene que $cos(z) \in \mathcal H(\mathbb C)$ 
+y que $(z-2)^2 \in \mathcal H(\mathbb C)$  y además no se anula en $\Omega.$ 
+Por tanto definimos $f(z) = \frac{cos(z)}{(z-2)^2}$ y esta función es holomorfa en
+$\Omega.$ \paragraph{}
+
+Tenemos además que $\bar{C}(0,1) \subseteq \Omega$ y con esto se cumplen todas las hipótesis
+necesarias para poder aplicar la fórmula 
+de Cauchy para la circunferencia:  
+
+$$\int_{C(0,1)} \frac{cos(z)}{z(z-2)^2}dz = 
+\int_{C(0,1)} \frac{f(z)}{z-0}dz = 2\pi i f(0) = \frac{\pi i}{2}$$
+
+\newpage
+
+\section{Ejercicio 4}
+
+\begin{micaja}
+    Sean $a,b  \in \mathbb C$ y sea $R >0$ de modo que $R>max\{|a|,|b|\}.$
+    Probar que, si $f$ es una función entera, se tiene que:
+
+    $$\int_{C(0,R)} \frac{f(z)}{(z-a)(z-b)}dz = 2\pi i \frac{f(b)-f(a)}{b-a}.$$
+    
+    Deducir que toda función entera y acotada es constante (Teorema de Liouville).
+\end{micaja}
+
+\subsection{Igualdad}
+Sean $a,b  \in \mathbb C$ dos elementos distintos cualesquiera y $R>max\{|a|,|b|\}.$ 
+$$ 2\pi i \frac{f(b)-f(a)}{b-a} = \frac{1}{b-a}(2\pi i f(b) - 2\pi i f(a))$$
+
+Y como $f$es una función entera se cumplen las hipótesis de la fórmula de Cauchy para la circunferencia, 
+lo que nos permite escribir: 
+
+$$\frac{1}{b-a}(2\pi i f(b) - 2\pi i f(a)) = \frac{1}{b-a}\left( \int_{C(0,R)} \frac{f(z)}{z-b}dz - \int_{C(0,R)} \frac{f(z)}{z-a}dz\right)$$
+Aplicamos la aditividad de la integral, suma fraciones y sacar factor común $f(z)$: 
+$$=\frac{1}{b-a} \int_{C(0,R)} \frac{f(z)(z-a)-f(z)(z-b)}{(z-b)(z-a)}dz =
+\frac{1}{b-a} \int_{C(0,R)} \frac{f(z)(b-a)}{(z-b)(z-a)}dz$$
+y finalmente por linealidad de la integral nos queda lo que buscábamos: 
+$$=\int_{C(0,R)} \frac{f(z)}{(z-a)(z-b)}dz.$$
+
+\subsection{Teorema de Liouville}
+Sean $a,b  \in \mathbb C$ dos elementos cualesquiera distintos y $R >0$ de modo que $R>max\{|a|,|b|\}.$
+Como $f$ es entera el ejercicio anterior nos da la la siguiente igualdad: 
+$$\int_{C(0,R)} \frac{f(z)}{(z-a)(z-b)}dz = 2\pi i \frac{f(b)-f(a)}{b-a}.$$
+Lo que implica que 
+\begin{equation}
+\left|\int_{C(0,R)} \frac{f(z)}{(z-a)(z-b)}dz \right|= \left| 2\pi i \frac{f(b)-f(a)}{b-a}\right|.
+\end{equation}
+Por otro lado tenemos
+$$\left|\int_{C(0,R)} \frac{f(z)}{(z-a)(z-b)}dz \right| \leq 
+ \int_{C(0,R)} \frac{|f(z)|}{|(z-a)(z-b)|}dz$$
+
+Por estar acotada la función entera $\exists M >0$ tal que $|f(z)|\leq M$. 
+Y además aplicando desigualdades triangulares: 
+$|z-a| \geq ||z|-|a|| = |R-|a|| \in \mathbb R$
+
+De donde deducimos sacando escalar
+
+$$\leq\int_{C(0,R)} \frac{M}{|R-|a|| |R-|b||}dz = \frac{M}{(R-|a|)(R-|b|)}.$$
+Y como R puede ser cualquier real siempre que $R>max\{|a|,|b|\},$ 
+tenemos que para cualquier $\varepsilon >0$ siempre se va a poder conseguir un radio 
+para el cual (volviendo a la ecuación (1))
+
+$$\left|\int_{C(0,R)} \frac{f(z)}{(z-a)(z-b)}dz  \right| = \left|2\pi i \frac{f(b)-f(a)}{b-a}\right| < \varepsilon.$$
+y puesto que $a,b$ son dos número complejos distintos cualesquiera; concluimos que
+sea cuales sean $a,b \in \mathbb C$ distintos, sus imágenes se pueden 
+ acercar todo lo que queramos  $|f(a)-f(b)| < \varepsilon_2$ o lo que es lo mismo, 
+la función $f$ es constante. 
+
+\newpage
+
+
+\section{Ejercicio 5}
+
+\begin{micaja}
+    
+    Sea $\emptyset \neq \Omega = \mathring{\Omega} \subset \mathbb C$ y sean $g,g_n:\Omega \rightarrow \mathbb C$ para cada $n\in \mathbb N.$
+    Probar que $\{g_n\}$ converge uniformemente a g en cada compacto de $\Omega$ si, y solo si, para cada $a \in \Omega$ existe
+    un entorno de $a$ en el que $\{g_n\}$ converge uniformemente a g.
+\end{micaja}
+\subsection{Condición suficiente}
+Por ser $\Omega$ un abierto para cualquiera de sus puntos $a$ podemos encontrar un disco $D(a,r)$ que quede contenido en $\Omega.$
+Consideremos ahora $\bar D (a,\frac{r}{2}) \subset D(a,r)$  que es un compacto de $\Omega$ y por hipótesis ${g_n}$ convergirá
+uniformemente.
+
+Como $a$ era un punto cualquiera hemos probado que para todo punto existe un entorno en que 
+${g_n}$ converge uniformemente.
+
+\subsection{Condición necesaria}
+Sea $K$ un compacto cualquiera de $\Omega.$
+Como para cada $a \in K$ existe un entorno de $a$ en el que $\{g_n\}$ converge uniformemente a g.
+Podemos escribir $K$ como unión de abiertos en los que converge uniformemente.
+$$K= \cup_{ a \in K} D(a,r_a)$$ 
+Donde $D(a,r_a)$ es un entorno abierto en el que hay convergencia uniformemente.
+
+Como además estamos en un compacto existirá un subrecubrimiento finito, 
+$\Lambda \subset \Omega$ finito. 
+
+$$K \subset \cup_{ a \in \Lambda} D(a,r_{a})$$ 
+
+Como para cada entorno del subrecubrimiento converge uniformemente tenemos que sea cual sea el 
+$a\in \Lambda$
+existirá $n_0^{a}  \in \mathbb N$ tal que para todo $n^a>n_0^a$  se cumple que
+$$|g_{n^a}(z) - g(z)|< \varepsilon \quad \forall z \in D(a,r_a)$$
+
+Como $\Lambda$ es finito existe $n_0$, el  máximo de los $n_0^a$ anteriores. Entontes concluiremos con que
+para todo $\varepsilon >0$ existe $n_0$ para que sea cual seal el $n>n_0$ natura se cumpla que
+$$|g_{n}(z) - g(z)|< \varepsilon \quad \forall z \in \cup_{ a \in \Lambda} D(a,r_a) \supseteq K$$
+
+Es decir, que hay convergencia uniforme en ese compacto $k$.
+Con lo que hemos probado lo que buscábamos. 
+
+\end{document}
